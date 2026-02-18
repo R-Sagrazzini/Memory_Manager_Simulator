@@ -29,6 +29,26 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
+.control-section {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #1857a4;
+}
+
+.control-section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.control-section h3 {
+  color: #03e6ff;
+  font-size: 14px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 /* gruppo dei controlli */
 .control-group {
   display: flex;
@@ -42,7 +62,22 @@ h1 {
 .control-group:last-child {
   margin-bottom: 0;
 }
+/*select*/
+select {
+  padding: 8px 12px;
+  border: 2px solid #1857a4;
+  border-radius: 5px;
+  background: #030349;
+  color: #fff;
+  font-size: 14px;
+  min-width: 120px;
+  cursor: pointer;
+}
 
+select:focus {
+  outline: none;
+  border-color: #00d9ff;
+}
 /* label */
 label {
   color: #ffffff;
@@ -104,23 +139,162 @@ button:hover {
   color: #fff;
 }
 
-/* canvas container */
-
-#p5Canvas {
-  display: block;
-  width: 90%;
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 10px;
-  border: 2px solid #1857a4;
-  border-radius: 10px;
-  background: #0c1738;
+#applyConfigBtn {
+  background: linear-gradient(145deg, #9b59b6, #8e44ad);
+  color: #fff;
 }
 
+#terminateBtn {
+  background: linear-gradient(145deg, #ff6b6b, #ee5a5a);
+  color: #fff;
+}
+
+/*legenda*/
+#legend {
+  max-width: 900px;
+  margin: 0 auto 15px auto;
+  padding: 10px 20px;
+  background: #0c1738;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid #fff;
+}
+
+/*statistiche*/
+
+#stats {
+  max-width: 900px;
+  margin: 0 auto 20px auto;
+  padding: 15px 20px;
+  background: #0c1738;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat-label {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.stat-box span:last-child {
+  color: #03e6ff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/*responsive*/
+
+@media (max-width: 768px) {
+  .control-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  input, select {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  button {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  #legend {
+    gap: 15px;
+  }
+  
+  #stats {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-box {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+
+/*Canvas container responsive*/
+#p5Canvas {
+  width: 90%;
+  max-width: 900px;
+  min-height: 300px;
+  aspect-ratio: 16 / 9;
+  margin: 30px auto;
+  padding: 15px;
+  border: 3px solid #03e6ff;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #0c1738, #061229);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.836),
+    0 0 20px rgba(3, 230, 255, 0.493),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+#p5Canvas:hover {
+  box-shadow: 
+    0 12px 40px rgb(0, 0, 0),
+    0 0 30px rgba(3, 230, 255, 0.842),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: #00ffff;
+}
 #p5Canvas canvas {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  #p5Canvas {
+    width: 95%;
+    padding: 10px;
+    border-width: 2px;
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  #p5Canvas {
+    width: 100%;
+    margin: 20px auto;
+    padding: 8px;
+    border-radius: 10px;
+    min-height: 200px;
+  }
 }
 
 /* info */
@@ -131,26 +305,42 @@ button:hover {
   margin-left: 40px;
   margin-right: 40px;
 }
+
 #info-container {
   background: #06174a;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
+
 #info-container h1 {
   font-weight: bold;
   color: #03e6ff;
   margin-bottom: 20px;
 }
+
 #info-container h2 {
   font-weight: bold;
   color: #0fad01;
   margin-bottom: 25px;
+  margin-top: 20px;
 }
+
 #info-container p {
   margin-bottom: 10px;
   margin-left: 120px;
   margin-right: 120px;
-  
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  #info-container p {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  #info {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }

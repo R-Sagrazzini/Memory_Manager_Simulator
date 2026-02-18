@@ -10,44 +10,144 @@
     
     <h1>Memory Manager System</h1>
     
-    <!-- controlli -->
+        <!-- controlli -->
     <div id="controls">
-      
-      <!-- gruppo: aggiungi processo -->
-      <div class="control-group">
-        <label>Nome:</label>
-        <input type="text" id="processName" placeholder="P0">
-        
-        <label>Pagine:</label>
-        <input type="number" id="processPages" min="1" max="4" value="2">
-        
-        <button id="addBtn">Aggiungi Processo</button>
+
+      <!-- configurazione memoria -->
+      <div class="control-section">
+        <h3>⚙️ Configurazione Memoria</h3>
+        <div class="control-group">
+          <label>Frame RAM:</label>
+          <input type="number" id="ramFrames" min="4" max="16" value="8">
+
+          <label>Pagine Swap:</label>
+          <input type="number" id="swapPages" min="4" max="16" value="8">
+
+          <button id="applyConfigBtn">Applica</button>
+        </div>
       </div>
-      
-      <!-- Gruppo: Azioni memoria -->
-      <div class="control-group">
-        <button id="allocateBtn">Alloca in RAM</button>
-        <button id="swapOutBtn">Swap Out</button>
-        <button id="swapInBtn">Swap In</button>
-        <button id="resetBtn">Reset</button>
+
+      <!-- aggiungi processo -->
+      <div class="control-section">
+        <h3>➕ Aggiungi Processo</h3>
+        <div class="control-group">
+          <label>Nome:</label>
+          <input type="text" id="processName" placeholder="P0" maxlength="4">
+
+          <label>Pagine:</label>
+          <input type="number" id="processPages" min="1" max="8" value="2">
+
+          <button id="addBtn">Aggiungi</button>
+        </div>
       </div>
-      
+
+      <!-- azioni processi -->
+      <div class="control-section">
+        <h3>🔄 Azioni</h3>
+        <div class="control-group">
+          <label>Processo:</label>
+          <select id="processSelect">
+            <option value="">-- Seleziona --</option>
+          </select>
+
+          <button id="allocateBtn">Alloca in RAM</button>
+          <button id="swapOutBtn">Swap Out</button>
+          <button id="swapInBtn">Swap In</button>
+          <button id="terminateBtn">Termina</button>
+        </div>
+      </div>
+
+      <!-- reset -->
+      <div class="control-section">
+        <div class="control-group">
+          <button id="resetBtn">🔄 Reset Sistema</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- legenda -->
+    <div id="legend">
+      <div class="legend-item">
+        <span class="legend-color" style="background: #2a2a2a;"></span>
+        <span>Libero</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color" style="background: #00d9ff;"></span>
+        <span>In RAM</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color" style="background: #f5490b;"></span>
+        <span>In Swap</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color" style="background: #5ede4a;"></span>
+        <span>In attesa</span>
+      </div>
     </div>
     
-    <!-- Canvas p5.js -->
+    <!-- canvas p5.js -->
     
     <div id="p5Canvas"></div>
     
-    
-    <!-- Info -->
+    <!-- statistiche -->
+    <div id="stats">
+      <div class="stat-box">
+        <span class="stat-label">RAM Usata:</span>
+        <span id="ramUsed">0/8</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Swap Usato:</span>
+        <span id="swapUsed">0/8</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Processi Attivi:</span>
+        <span id="processCount">0</span>
+      </div>
+    </div>
+    <!-- info -->
     <div id="info">
       <div id="info-container">
         <h1>Descrizione</h1>
+
         <h2>Paginazione</h2>
-        <p>La paginazione è una tecnica di gestione della
-        memoria che divide la memoria in blocchi di dimensioni
-        fisse chiamati pagine. Ogni processo viene suddiviso in pagine 
-        e caricato in memoria quando necessario.</p>
+        <p>
+          La paginazione è una tecnica di gestione della memoria che divide 
+          la memoria in blocchi di dimensioni fisse chiamati <strong>frame</strong> (in RAM) 
+          e <strong>pagine</strong> (nei processi). Ogni processo viene suddiviso in pagine 
+          e caricato in memoria quando necessario.
+        </p>
+
+        <h2>Come funziona</h2>
+        <p>
+          Quando un processo viene creato, il sistema operativo calcola quante pagine 
+          servono per contenerlo. Quando il processo deve essere eseguito, le sue pagine 
+          vengono caricate nei frame liberi della RAM. Non è necessario che le pagine 
+          siano contigue in memoria.
+        </p>
+
+        <h2>Area di Swap</h2>
+        <p>
+          Quando la RAM è piena, il sistema può spostare alcune pagine nell'<strong>area di Swap</strong>, 
+          uno spazio su disco rigido usato come estensione della memoria. Questo processo si chiama 
+          <strong>Swap Out</strong>. Quando le pagine servono di nuovo, vengono riportate in RAM 
+          con lo <strong>Swap In</strong>.
+        </p>
+
+        <h2>Vantaggi</h2>
+        <p>
+          La paginazione elimina il problema della <strong>frammentazione esterna</strong> 
+          perché ogni frame ha la stessa dimensione. Inoltre permette di eseguire processi 
+          più grandi della memoria fisica disponibile, usando lo swap.
+        </p>
+
+        <h2>Istruzioni</h2>
+        <p>
+          <strong>1.</strong> Configura il numero di frame RAM e pagine Swap, poi clicca "Applica".<br><br>
+          <strong>2.</strong> Aggiungi un processo specificando nome e numero di pagine.<br><br>
+          <strong>3.</strong> Seleziona un processo e usa i bottoni per allocarlo, spostarlo o terminarlo.
+        </p>
+      </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js"></script>
