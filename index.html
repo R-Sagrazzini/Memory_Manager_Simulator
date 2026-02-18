@@ -6,11 +6,51 @@
     <title>Memory Manager System</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body>    
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js"></script>
-    <script src="script.js"></script>
-    <!--  Canvas container -->
+  <body>
+    
+    <h1>Memory Manager System</h1>
+    
+    <!-- controlli -->
+    <div id="controls">
+      
+      <!-- gruppo: aggiungi processo -->
+      <div class="control-group">
+        <label>Nome:</label>
+        <input type="text" id="processName" placeholder="P0">
+        
+        <label>Pagine:</label>
+        <input type="number" id="processPages" min="1" max="4" value="2">
+        
+        <button id="addBtn">Aggiungi Processo</button>
+      </div>
+      
+      <!-- Gruppo: Azioni memoria -->
+      <div class="control-group">
+        <button id="allocateBtn">Alloca in RAM</button>
+        <button id="swapOutBtn">Swap Out</button>
+        <button id="swapInBtn">Swap In</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+      
+    </div>
+    
+    <!-- Canvas p5.js -->
+    
     <div id="p5Canvas"></div>
     
+    
+    <!-- Info -->
+    <div id="info">
+      <div id="info-container">
+        <h1>Descrizione</h1>
+        <h2>Paginazione</h2>
+        <p>La paginazione è una tecnica di gestione della
+        memoria che divide la memoria in blocchi di dimensioni
+        fisse chiamati pagine. Ogni processo viene suddiviso in pagine 
+        e caricato in memoria quando necessario.</p>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

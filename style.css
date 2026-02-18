@@ -1,18 +1,156 @@
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#p5Canvas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 50%;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #004f59;
+  color: #fff;
+  min-height: 100vh;
+  padding: 20px;
+}
 
+/* titolo */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #03e6ff;
+}
+
+/* container controlli */
+#controls {
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  padding: 20px;
+  background: #0c1738;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* gruppo dei controlli */
+.control-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
+}
+
+/* label */
+label {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+/* input */
+input {
+  padding: 8px 12px;
+  border: 2px solid #1857a4;
+  border-radius: 5px;
+  background: #030349;
+  color: #fff;
+  font-size: 14px;
+  width: 80px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #00d9ff;
+}
+
+/* bottoni */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+#addBtn {
+  background: #00d9ff;
+  color: #000;
+}
+
+#allocateBtn {
+  background: #5ede4a;
+  color: #000;
+}
+
+#swapOutBtn {
+  background: #f5490b;
+  color: #fff;
+}
+
+#swapInBtn {
+  background: #14c904;
+  color: #000;
+}
+
+#resetBtn {
+  background: #e81818;
+  color: #fff;
+}
+
+/* canvas container */
+
+#p5Canvas {
+  display: block;
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
+  border: 2px solid #1857a4;
+  border-radius: 10px;
+  background: #0c1738;
+}
+
+#p5Canvas canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* info */
+#info {
+  text-align: center;
+  color: #004f59;
+  font-size: 14px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+#info-container {
+  background: #06174a;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+#info-container h1 {
+  font-weight: bold;
+  color: #03e6ff;
+  margin-bottom: 20px;
+}
+#info-container h2 {
+  font-weight: bold;
+  color: #0fad01;
+  margin-bottom: 25px;
+}
+#info-container p {
+  margin-bottom: 10px;
+  margin-left: 120px;
+  margin-right: 120px;
+  
+  color: #fff;
 }
